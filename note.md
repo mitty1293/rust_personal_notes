@@ -32,6 +32,21 @@ fn main() {
     println!("The first letter of the English alphabet is {} and the last letter is {}.", 'A', 'Z');
 }
 ```
+# 定数
+[Rust by exmaple](https://doc.rust-jp.rs/rust-by-example-ja/custom_types/constants.html)  
+[Tour of rust](https://tourofrust.com/07_ja.html)
+- Rustで定数は`const`, `static`で定義する。
+    - const:
+        - 不変の値（通常はこちらを使用する）。
+        - 変更しようとするとエラー。`mut`も付けられない。
+        - グローバルスコープを含む任意のスコープで宣言可能。
+    - static: 
+        - スタティックなライフタイムを持つミュータブル(mut)な値。グローバル変数。
+        - ちょっと難しいのであまり使わなくても良いかも。
+- 大文字のスネークケース `SCREAMING_SNAKE_CASE` を使うことが一般的。
+```Rust
+const PI: f32 = 3.14159;
+```
 # 変数のシャドウ処理
 [Rust の最初のステップ / Rust プログラムを初めて作成する / Rust で変数を作成して使用する](https://docs.microsoft.com/ja-jp/learn/modules/rust-create-program/2-variables)
 - 既存の変数の名前を使って新しい変数を宣言できる。
@@ -81,7 +96,9 @@ let smiley_face = '😃';
 - `&str`のような参照を用いることがほとんど。
 - コンパイル時に中身が判明している必要があり、変更できない文字列データへのポインタと考えることができる。
 - 簡単にいうと、プログラムの実行時に変更されないテキスト データの不変ビュー。
-
+### Todo
+[Tour of Rust 基本的な型](https://tourofrust.com/05_ja.html)
+-  スライスは実行時に長さが決まるのでは？コンパイル時に中身が判明している必要あるのか？上の説明あってるか？
 ### `String`型
 - 文字列処理において，ベクタ `Vec<T>` に相当する型
 - ヒープに割り当てられる。
@@ -114,16 +131,18 @@ fn car_factory(color: String, transmission: Transmission) -> Car {
     }
 }
 ```
+
 # 配列
-メモリに連続して格納された同じ型のオブジェクトのコレクション
+[Tour of Rust 基本的な型](https://tourofrust.com/05_ja.html)  
+[Tour of Rust 配列](https://tourofrust.com/08_ja.html)
+メモリに連続して格納された同じ型のオブジェクトのコレクション  
+コンパイル時に長さが決まる同じ型のコレクション
 ## 特徴
 - すべての要素は同じデータ型。(タプルは異なる型でも良い)
-- サイズは固定。長さが変更されることはない。
+- サイズは固定。長さが変更されることはない。コンパイル時に決まる。
 - 要素の値だけが変更される可能性がある。
-## 参照
-- array[0], array[1]のようにインデックス番号で要素に参照可能。
-- 長さ以上のインデックスを指定するとコンパイルエラー
 ## 定義
+`[T; N]`: `T`は要素の型、`N`は長さ
 ```Rust
 // 値のコンマ区切りで定義可能
 let days = ["Sunday", "Monday", "Tuesday"];
@@ -133,7 +152,14 @@ let bytes = [0; 5];
 
 // シグネチャ[T; size]で定義可能
 let array: [i64; 5];
+let nums: [i32; 3] = [1, 2, 3];
+println!("{:?}", nums);
+println!("{}", nums[1]);
 ```
+## 参照
+- array[0], array[1]のようにインデックス番号で要素に参照可能。
+- 長さ以上のインデックスを指定するとコンパイルエラー
+
 # ベクター
 配列と同様に同じ型の複数の値を格納するコレクション
 ## 特徴
@@ -227,7 +253,9 @@ Vec<String>
 - `#[derive(Trait)]`属性を使用すると、`Trait`特性が自動で実装される。
     - `#[derive(Debug, PartialEq)]`であれば`Debug`, `PartialEq`特性が自動で実装される。
 # 反復子（イテレータ）
+[Tour of Rust for](https://tourofrust.com/17_ja.html)
 - 値を1つずつ取り出して処理するためのもの
+- 項目がなくなるまで「次の項目は何か？」と質問することができるオブジェクト。
 - Range, スライスや配列やVecやHashMap等のコレクション型
 - すべての反復子で Iterator という名前の特性が実装されており、標準ライブラリに定義されている。
     ```Rust
