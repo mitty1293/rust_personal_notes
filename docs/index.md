@@ -331,7 +331,7 @@ Vec<String>
     - バイナリクレート： `src/main.rs`
         - または `src/bin` ディレクトリにファイルを置くことで複数のバイナリクレートを持つことができる
 - モジュール： mod や use でまとめる単位
-```
+<!-- ```
 <package>
   - Cargo.toml
   - src/
@@ -341,7 +341,7 @@ Vec<String>
       - bin_a.rs
       - bin_b.rs
       - ...
-```
+``` -->
 # テスト
 [Rust の最初のステップ / 自動テストを記述する](https://docs.microsoft.com/ja-jp/learn/modules/rust-automated-tests/)
 ## `assert!` マクロ
