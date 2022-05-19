@@ -331,7 +331,7 @@ Vec<String>
     - バイナリクレート： `src/main.rs`
         - または `src/bin` ディレクトリにファイルを置くことで複数のバイナリクレートを持つことができる
 - モジュール： mod や use でまとめる単位
-```Shell
+```
 <package>
   - Cargo.toml
   - src/
